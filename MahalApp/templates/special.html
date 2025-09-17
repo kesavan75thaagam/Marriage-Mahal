@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  
+  <style>
+    /* ✅ Alagumalai Grid */
+    .grid-alagumalai {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      grid-template-areas: 
+        "img1 img2 img3"
+        "img4 img2 img5";
+      gap: 10px;
+      margin: 20px auto;
+      max-width: 1000px;
+      padding: 20px;
+    }
+
+    .img1 { grid-area: img1; }
+    .img2 { grid-area: img2; grid-row: 1 / span 2; }
+    .img3 { grid-area: img3; }
+    .img4 { grid-area: img4; }
+    .img5 { grid-area: img5; }
+
+    .grid-alagumalai img {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      cursor: pointer;
+    }
+    .grid-alagumalai img:hover { transform: scale(1.05); }
+
+    .alagumalai p { text-align:center; font-size:20px; margin-top:20px; }
+
+    /* ✅ Sivanmalai Grid */
+    .grid-sivanmalai {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      grid-template-areas:
+        "image1 image2 image3"
+        "image4 image2 image5"
+        ;
+      max-width: 1000px;
+      margin: auto;
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .sivan1 { grid-area: image1; }
+    .sivan2 { grid-area: image2; grid-row: 1 / span 2; }
+    .sivan3 { grid-area: image3; }
+    .sivan4 { grid-area: image4; }
+    .sivan5 { grid-area: image5; }
+
+    .grid-sivanmalai img {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      transition: transform 1s ease-in-out;
+      cursor: pointer;
+    }
+    .grid-sivanmalai img:hover { transform: scale(1.1); }
+
+    .sivanmalai p { text-align:center; }
+
+    /* ✅ Media Queries */
+    @media  (min-width: 480px) and (max-width: 767px) {
+      .grid-alagumalai, .grid-sivanmalai {
+        gap: 6px;
+        padding: 5px;
+        background-color: lightblue;
+      }
+    }
+
+    @media (min-width:768px) and (max-width:1024px) {
+      .grid-alagumalai, .grid-sivanmalai {
+        gap: 4px;
+        padding: 3px;
+        background-color:burlywood;
+      }
+    }
+    
+  </style>
+</head>
+<body>
+  <!-- ✅ Header Section -->
+  <header class="bg-light shadow-sm">
+    <div class="container">
+      <h3 class="text-center py-3">
+        We're Delighted To Welcome You To <b>Muthukumaran Mahal</b>, Where Your Happiness Begins!
+      </h3>
+    </div>
+
+    <!-- ✅ Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="{% url 'home' %}">Muthukumaran Mahal</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-4">
+            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'special' %}">Specials</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ✅ Alagumalai -->
+  <div class="alagumalai">
+    <p><strong>Alagumalai Murugan Temple</strong></p>
+    <div class="grid-alagumalai">
+      <img src="{% static 'images/alagumalai1.jpeg' %}" class="img1" alt="alagumalai1">
+      <img src="{% static 'images/alagumalai5.jpeg' %}" class="img2" alt="alagumalai2">
+      <img src="{% static 'images/alagumalai3.jpeg' %}" class="img3" alt="alagumalai3">
+      <img src="{% static 'images/alagumalai6.jpeg' %}" class="img4" alt="alagumalai6">
+      <img src="{% static 'images/alagumalai2.jpeg' %}" class="img5" alt="alagumalai5">
+    </div>
+  </div>
+  <hr>
+
+  <!-- ✅ Sivanmalai -->
+  <div class="sivanmalai">
+    <p><strong>Sivanmalai temple</strong></p>
+    <div class="grid-sivanmalai">
+      <img src="{% static 'images/alagumalai1.jpeg' %}" class="sivan1" alt="sivan1" data-bs-toggle="modal" data-bs-target="#modalimage1">
+      <img src="{% static 'images/alagumalai1.jpeg' %}" class="sivan2" alt="sivan2" data-bs-toggle="modal" data-bs-target="#modalimage2">
+      <img src="{% static 'images/alagumalai1.jpeg' %}" class="sivan3" alt="sivan3" data-bs-toggle="modal" data-bs-target="#modalimage3">
+      <img src="{% static 'images/alagumalai1.jpeg' %}" class="sivan4" alt="sivan4" data-bs-toggle="modal" data-bs-target="#modalimage4">
+      <img src="{% static 'images/alagumalai1.jpeg' %}" class="sivan5" alt="sivan5">
+    </div>
+  </div>
+
+  <!-- ✅ Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

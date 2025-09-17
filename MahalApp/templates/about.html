@@ -1,0 +1,597 @@
+
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muthukumaran Mahal - Wedding Hall</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* Header styling */
+    .welcome-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .welcome-header h3 {
+      font-size: 1.8rem;
+      font-weight: 300;
+      margin: 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    /* Navbar styling */
+    .custom-navbar {
+      background: rgba(255, 255, 255, 0.95) !important;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 15px 0;
+    }
+
+    .navbar-brand {
+      font-size: 1.5rem;
+      color: #667eea !important;
+      font-weight: 700;
+    }
+
+    .nav-link {
+      color: #333 !important;
+      font-weight: 500;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: #667eea !important;
+      transform: translateY(-2px);
+    }
+
+    /* Hero image styling */
+    .hero-section {
+      position: relative;
+      overflow: hidden;
+      margin: 0;
+      height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    .hero-image {
+      width: 100%;
+      max-width: 1200px;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .hero-image:hover {
+      transform: scale(1.02);
+    }
+
+    /* Facilities grid styling */
+    .facilities-section {
+      padding: 60px 0;
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    }
+
+    .facilities-title {
+      text-align: center;
+      margin-bottom: 50px;
+      color: #333;
+      font-size: 2.5rem;
+      font-weight: 300;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .facility-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .facility-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    }
+
+    .facility-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .facility-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .facility-info {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .facility-info h4 {
+      color: #667eea;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .facility-info p {
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    /* Lightbox styling */
+    #lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    #lightbox .close-btn {
+      position: absolute;
+      top: 30px;
+      right: 50px;
+      color: white;
+      font-size: 40px;
+      cursor: pointer;
+      z-index: 10000;
+    }
+
+    /* Map and weather section */
+    .map-weather-section {
+      padding: 60px 0;
+      background: white;
+    }
+
+    .map-container {
+      flex: 2;
+      margin-right: 30px;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 450px;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .weather-widget {
+      flex: 1;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 30px;
+      border-radius: 15px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .weather-widget h4 {
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
+
+    .weather-widget .weather-icon {
+      width: 80px;
+      height: 80px;
+      margin: 20px auto;
+    }
+
+    .weather-widget .temp {
+      font-size: 3rem;
+      font-weight: 100;
+      margin: 10px 0;
+    }
+
+    .direction-btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 15px 40px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .direction-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.5);
+      color: white;
+      text-decoration: none;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .fade-in {
+      animation: fadeIn 1s ease-in;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .welcome-header h3 {
+        font-size: 1.3rem;
+        padding: 0 15px;
+      }
+
+      .hero-section {
+        height: 400px;
+        padding: 0 15px;
+      }
+
+      .hero-image {
+        height: 350px;
+      }
+
+      .facilities-title {
+        font-size: 2rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        padding: 0 15px;
+      }
+
+      .map-weather-section .container {
+        padding: 0 15px;
+      }
+
+      .map-container {
+        margin-right: 0;
+        margin-bottom: 30px;
+      }
+
+      .map-container iframe {
+        height: 300px;
+      }
+
+      #lightbox .close-btn {
+        right: 20px;
+        top: 20px;
+        font-size: 30px;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .map-weather-section .d-flex {
+        flex-direction: column !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header class="welcome-header">
+    <div class="container">
+      <h3 class="fade-in">
+        We're Delighted To Welcome You To <strong>Muthukumaran Mahal</strong>, Where Your Happiness Begins!
+      </h3>
+    </div>
+  </header>
+
+  <!-- Responsive Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light custom-navbar sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <i class="fas fa-crown me-2"></i>Muthukumaran Mahal
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item mx-2">
+            <a class="nav-link" href=" {% url 'home' %} "><i class="fas fa-home me-1"></i>Home</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="{% url 'about'%} "><i class="fas fa-info-circle me-1"></i>About Us</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt me-1"></i>Login</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="{% url 'special' %}"><i class="fas fa-star me-1"></i>Specials</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="{% url 'contact' %}"><i class="fas fa-phone me-1"></i>Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Image Section -->
+  <section id="home" class="hero-section">
+    <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+         alt="Muthukumaran Mahal Main Hall" 
+         class="hero-image fade-in">
+  </section>
+
+<!-- Facilities Section -->
+<section id="facilities" class="facilities-section">
+  <div class="container">
+    <h2 class="facilities-title">Our Premium Facilities</h2>
+    <div class="gallery-grid">
+
+      <div class="facility-card" onclick="openFull('{% static 'images/AC1.png' %}')">
+        <img src="{% static 'images/AC1.png' %}" alt="AC Room">
+        <div class="facility-info">
+          <h4>AC Hall</h4>
+          <p>Spacious air-conditioned hall with modern amenities for comfortable celebrations</p>
+        </div>
+      </div>
+
+      <div class="facility-card" onclick="openFull('{% static 'images/parking1.png' %}')">
+        <img src="{% static 'images/parking1.png' %}" alt="Parking">
+        <div class="facility-info">
+          <h4>Ample Parking</h4>
+          <p>Large secure parking area that can accommodate 100+ vehicles</p>
+        </div>
+      </div>
+
+      <div class="facility-card" onclick="openFull('{% static 'images/temple1.png' %}')">
+        <img src="{% static 'images/temple1.png' %}" alt="Vinayagar Temple">
+        <div class="facility-info">
+          <h4>Vinayagar Temple</h4>
+          <p>Sacred temple within the premises for traditional ceremonies and blessings</p>
+        </div>
+      </div>
+
+      <div class="facility-card" onclick="openFull('{% static 'images/dinning1.png' %}')">
+        <img src="{% static 'images/dinning1.png' %}" alt="Dining Hall">
+        <div class="facility-info">
+          <h4>Dining Hall</h4>
+          <p>Elegant dining area with capacity for 300+ guests with traditional seating</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- Lightbox -->
+  <div id="lightbox" onclick="closeLightbox()">
+    <span class="close-btn" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" onclick="event.stopPropagation()">
+  </div>
+
+  <!-- Map and Weather Section -->
+  <section id="contact" class="map-weather-section">
+    <div class="container">
+      <div class="d-flex flex-wrap justify-content-between align-items-start">
+        <div class="map-container">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3910.123456789!2d77.4315152!3d11.0483951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba9a70ee83cc7fb%3A0x761f4abc03e4a7bb!2sMuthukumaran%20Marriage%20Mahal!5e0!3m2!1sen!2sin!4v1234567890" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+        
+        <div class="weather-widget">
+          <h4><i class="fas fa-cloud-sun me-2"></i>Live Weather</h4>
+          <div class="location">
+            <p><i class="fas fa-map-marker-alt me-2"></i>Peruntholuvu, Tamil Nadu</p>
+          </div>
+          <div class="weather-icon">
+            <i id="weather-icon" class="fas fa-sun" style="font-size: 3rem;"></i>
+          </div>
+          <div class="temp" id="temperature">--°C</div>
+          <div class="condition" id="weather-condition">Loading...</div>
+          <div class="details mt-3">
+            <p><i class="fas fa-eye me-2"></i>Humidity: <span id="humidity">--%</span></p>
+            <p><i class="fas fa-wind me-2"></i>Wind: <span id="wind-speed">-- km/h</span></p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center">
+        <a href="https://www.google.com/maps/dir/?api=1&destination=11.0483951,77.4315152" target="_blank" class="direction-btn">
+          <i class="fas fa-directions me-2"></i>Get Directions
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-4">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-4">
+          <h5><i class="fas fa-crown me-2"></i>Muthukumaran Mahal</h5>
+          <p>Where Your Happiness Begins!</p>
+        </div>
+        <div class="col-md-4">
+          <h6>Contact Info</h6>
+          <p><i class="fas fa-phone me-2"></i>+91 123 456 7890</p>
+          <p><i class="fas fa-envelope me-2"></i>info@muthukumaranmahal.com</p>
+        </div>
+        <div class="col-md-4">
+          <h6>Follow Us</h6>
+          <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="text-white"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <hr>
+      <p>&copy; 2024 Muthukumaran Mahal. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Lightbox functionality
+    function openFull(imageSrc) {
+      document.getElementById("lightbox").style.display = "flex";
+      document.getElementById("lightbox-img").src = imageSrc;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").style.display = "none";
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close lightbox with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Weather API functionality
+    async function fetchWeather() {
+      try {
+        // Using a demo weather data since we can't make actual API calls in this environment
+        // In a real implementation, you'd use OpenWeatherMap or similar API
+        const weatherData = {
+          temperature: 28,
+          condition: "Partly Cloudy",
+          humidity: 65,
+          windSpeed: 8.5,
+          icon: "partly-cloudy"
+        };
+
+        // Update weather display
+        document.getElementById('temperature').textContent = weatherData.temperature + '°C';
+        document.getElementById('weather-condition').textContent = weatherData.condition;
+        document.getElementById('humidity').textContent = weatherData.humidity + '%';
+        document.getElementById('wind-speed').textContent = weatherData.windSpeed + ' km/h';
+        
+        // Update weather icon based on condition
+        const iconElement = document.getElementById('weather-icon');
+        if (weatherData.condition.toLowerCase().includes('cloud')) {
+          iconElement.className = 'fas fa-cloud';
+        } else if (weatherData.condition.toLowerCase().includes('rain')) {
+          iconElement.className = 'fas fa-cloud-rain';
+        } else {
+          iconElement.className = 'fas fa-sun';
+        }
+      } catch (error) {
+        console.log('Weather data not available');
+        document.getElementById('weather-condition').textContent = 'Weather data unavailable';
+      }
+    }
+
+    // Load weather on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      fetchWeather();
+      
+      // Add fade-in animation to elements when they come into view
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, observerOptions);
+
+      // Observe facility cards for animation
+      document.querySelectorAll('.facility-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(card);
+      });
+    });
+
+    // Add some interactive hover effects
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px)';
+      });
+      
+      link.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+      });
+    });
+  </script>
+</body>
+</html>
