@@ -1,17 +1,8 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
+{% block title %} Special {% endblock %}
+{% block content %}
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-  <!-- Font Awesome CSS -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  
   <style>
     /* ✅ Alagumalai Grid */
     .grid-alagumalai {
@@ -96,35 +87,15 @@
     }
     
   </style>
-</head>
-<body>
-  <!-- ✅ Header Section -->
-  <header class="bg-light shadow-sm">
+
+  
     <div class="container">
       <h3 class="text-center py-3">
         We're Delighted To Welcome You To <b>Muthukumaran Mahal</b>, Where Your Happiness Begins!
       </h3>
     </div>
 
-    <!-- ✅ Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light border-top">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="{% url 'home' %}">Muthukumaran Mahal</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="mainNav">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-4">
-            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'special' %}">Specials</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
+
 
   <!-- ✅ Alagumalai -->
   <div class="alagumalai">
@@ -151,7 +122,4 @@
     </div>
   </div>
 
-  <!-- ✅ Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+{% endblock %}
