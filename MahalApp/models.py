@@ -5,6 +5,9 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
+    username = models.CharField(max_length=100, unique=True)
+    email = models.EmailField(max_length=100, unique=True)
+
     ROLE_CHOICES = (
         ('admin', 'Admin'),
         ('manager', 'Manager'),
@@ -18,6 +21,9 @@ class User(AbstractUser):
         default='client'
     )
     address = models.CharField(max_length=255, blank=True)
+
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email']
 
     def __str__(self):
         return self.username

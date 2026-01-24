@@ -3,6 +3,21 @@
 
 {% block content %}
 
-<h1>This Is Login Page </h1>
+    <h1>This Is Login Page </h1>
+    <div class="container">
+        <div style="background-color:rgb(228, 214, 214); text:white; padding:20px;">
+            <form method="post">
+        {% csrf_token %}
+        <label>Email</label>
+        <input type="email" name="email" placeholder="EnterYourMail">
+        <br>
+        <label>Password</label>
+        <input type="password" name="password" placeholder="EnterYourpassword">
+        <br>
+        <button type="submit">Login</button>
+
+    </form>
+        </div>
+    </div>
 
 {% endblock %}
