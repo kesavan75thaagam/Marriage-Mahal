@@ -87,6 +87,41 @@ def dashboard_view(request):
         return render(request, 'dashboard.html', {'all_users': all_users})
     return render(request, 'dashboard.html')
 
+def profile_view(request):
+    user=request.user
+
+    if request.method == "POST":
+        user.username=request.POST.get("username",user.username)
+        user.email=request.POST.get('email', user.email)
+        user.phone=request.POST.get("phone", user.phone)
+        user.address=request.POST.get("address", user.address)
+        old_password=request.POST.get("old_password","").strip()
+        new_password=request.POST.get("new_password","").strip()
+        confirm_password=request.POST.get("confirm_password", "").strip()
+    
+        if new_password or confirm_password:
+            if not old_password:
+                messages.error(request,"Please Enter Your Old Password !")
+                return redirect('profile')
+
+            if not user.check_password(old_password):
+                messages.error(request, "Old password is incorrect !")
+                return redirect('profile')
+
+            if new_password != confirm_password:
+                messages.error(request, "New Password and Confirm Password do not match !")
+                return redirect('profile')
+            user.set_password(new_password)
+            user.save()
+            messages.success(request,'Password Upddated Successfully !')
+        user.save()
+        messages.success(request, 'Profile Updated Successfully !')
+    context={
+        'user':user 
+    }
+
+    return render(request,'profile.html',context)
+
 def special_view(request):
     return render(request,'special.html')
 

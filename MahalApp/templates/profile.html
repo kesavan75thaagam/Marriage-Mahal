@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %} Profile Page {% endblock %}
+
+{% block content %}
+
+<p>Welcome: <strong>{{user.username}}</strong></p>
+<form method="post" class="form-content">
+    {% csrf_token %}
+    <div class="form-grid">
+        <div class="form-label">
+            <label>Username</label>
+            <input type="text" name="username" value="{{user.username}}" class="form-input">
+        </div>
+
+        <div class="form-label">
+            <label>Email</label>
+            <input type="email" name="email" value="{{user.email}}" class="form-input">
+        </div>
+
+        <div class="form-label">
+            <label>Phone</label>
+            <input type="number" name="phone" value="{{user.phone}}" class="form-input">
+        </div>
+
+        <div class="form-label">
+            <label>Address</label>
+            <input type="text" name="address" value="{{user.address}}" class="form-input">
+        </div>
+
+         <div class="form-label">
+            <label>new_password</label>
+            <input type="text" name="new_password" class="form-input">
+        </div>
+
+         <div class="form-label">
+            <label>Old Password</label>
+            <input type="text" name="old_password" class="form-input">
+        </div>
+        
+         <div class="form-label">
+            <label>confirm password</label>
+            <input type="text" name="confirm_password" class="form-input">
+        </div>
+
+        <button type="submit" class="btn btn-success">Save Changes</button>
+        <a href="{% url 'dashboard' %}" class="btn btn-outline-primary">Cancel</a>
+    </div>    
+</form>
+{% endblock %}

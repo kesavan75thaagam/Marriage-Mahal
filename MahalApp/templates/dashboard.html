@@ -1,15 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    {% for user in all_users %}
+        <p><strong>UserName: </strong>{{user.username}}</p>
+        <p><strong>UserId: </strong>{{user.id}}</p>
     <div style="display:flex; gap:10px;">
-        <a href="#">Profile</a>
         <a href="#">Managers</a>
         <a href="#">Clients</a>
         <a href="{% url 'Partials' %}">Partials</a>
     </div>
+    {% endfor %}
+    
+
     <a href="{% url 'logout' %}" style="background-color: #dc3545; color: white; padding: 8px 16px; text-decoration: none; border-radius: 4px;">Logout</a>
 </div>
 <p><strong>Debug: Your role is "{{ user.role }}"</strong></p>
+<br><br>
+<a href="{% url 'profile'%}" class="btn btn-outline-primary">Profile</a>
 
 {% if user.role == 'admin' %}
     <h2>Admin Dashboard</h2>
