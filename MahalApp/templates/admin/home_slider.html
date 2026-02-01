@@ -1,0 +1,42 @@
+
+
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h2>Home Slider Management</h2>
+    <p>Manage your home page slider images and content here.</p>
+    
+    <div class="form-content">
+        <div class="form-grid">
+            <div class="form-label">
+                <label>MahalName</label>
+                <input type="text" name="mahal_name" class="form-input" >
+            </div>
+
+            <div class="form-label">
+                <label>BackgroundColor</label>
+                <input type="text" name="bg_color" class="form-input">
+            </div>
+
+            <div class="form-label">
+                <label>font_size</label>
+                <input type="number" name="font_size" class="form-input">
+            </div>
+
+              <div class="form-label">
+                <label>LogoRadius</label>
+                <input type="number" name="logo_radius" class="form-input">
+            </div>
+
+
+            <div class="form-label">
+                <label>BgLogo</label>
+                <input type="file" name="bg_logo" class="form-input">
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

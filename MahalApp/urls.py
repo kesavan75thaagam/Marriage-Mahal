@@ -1,7 +1,6 @@
 from django.urls import path
 
 from . import views
-from .views.admin_views import PartialsView
 
 urlpatterns=[
 
@@ -23,7 +22,8 @@ urlpatterns=[
     path('footer/',views.footer_view, name='footer'),
 
     ######    ADMIN URL   ##################
-    path('Partials/',PartialsView, name='Partials'),
+    path('Partials/',views.PartialsView, name='Partials'),
+    path('home_slider/', views.home_slider_view, name='home_slider'),
 ]
 
 

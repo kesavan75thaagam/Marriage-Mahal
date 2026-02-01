@@ -13,12 +13,24 @@
 
     <div class="collapse navbar-collapse" id="mainNav">
         <ul class="navbar-nav ms-auto gap-4">
-            <li><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-            <li><a class="nav-link" href="{% url 'register' %}">Register</a></li>
-            <li><a class="nav-link" href="{% url 'about' %}">About</a></li>
-            <li><a class="nav-link" href="{% url 'login' %}">Login</a></li>
-            <li><a class="nav-link" href="{% url 'special' %}">Specials</a></li>
-            <li><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+            
+            <!-- In your navigation -->
+            {% if user.is_authenticated %}
+                <li><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                <a href="{% url 'dashboard' %}">Dashboard</a>
+                <a href="{% url 'logout' %}"
+                onclick="return confirm('Are You Sure Logout !')"
+                >Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}">Register</a>
+                <li><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                <!-- <li><a class="nav-link" href="{% url 'login' %}">Login</a></li> -->
+                <li><a class="nav-link" href="{% url 'special' %}">Specials</a></li>
+                <li><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+            {% endif %}
+
+
         </ul>
     </div>
 

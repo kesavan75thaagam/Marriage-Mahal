@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from MahalApp.models import User
+from django.contrib.auth.decorators import login_required
+
 
 def home_view(request):
     return render(request,'home.html')
@@ -81,12 +83,14 @@ def login_view(request):
 
     return render(request,'login.html')
 
+@login_required
 def dashboard_view(request):
     if request.user.role == 'admin':
         all_users = User.objects.all()
         return render(request, 'dashboard.html', {'all_users': all_users})
     return render(request, 'dashboard.html')
 
+@login_required
 def profile_view(request):
     user=request.user
 
