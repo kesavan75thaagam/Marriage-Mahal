@@ -45,4 +45,13 @@ class User(AbstractUser):
         return self.username
 
 
-    
+class HomeSlider(models.Model):
+    mahal_name=models.CharField(max_length=100, null=True, blank=True)
+    bg_color=models.CharField(max_length=100, null=True, blank=True)
+    font_color=models.CharField(max_length=100, null=True, blank=True)
+    font_size=models.CharField(max_length=100, null=True, blank=True)
+    logo=models.FileField(upload_to="logo/",null=True, blank=True)
+    logo_radius=models.IntegerField(default=40)
+
+    def __str__(self):
+        return self.mahal_name

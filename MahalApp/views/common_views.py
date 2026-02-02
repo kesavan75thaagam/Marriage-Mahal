@@ -8,7 +8,10 @@ from django.contrib.auth.decorators import login_required
 
 
 def home_view(request):
-    return render(request,'home.html')
+    from MahalApp.models import HomeSlider
+    home_slider, created = HomeSlider.objects.get_or_create(id=1)
+    context = {'Home': home_slider}
+    return render(request, 'home.html', context)
 
 def about_view(request):
     api_key="f586208ffb5bf58837c78e0f4ce0a04a"

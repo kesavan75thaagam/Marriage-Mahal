@@ -1,10 +1,14 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light border-top">
+<nav class="navbar navbar-expand-lg" style="background-color: {{ Home.bg_color|default:'#ffffff' }}">
   <div class="container">
 
     <a class="navbar-brand" href="{% url 'home' %}">
-        <img src="{% static 'images/murugan1.png' %}" width="100">
-        <span>Muthukumaran Mahal</span>
+        {% if Home.logo %}
+        <img src="{{ Home.logo.url }}" alt="logo-image" width="100" style="border-radius: {{ Home.logo_radius|default:'40' }}px">
+        {% else %}
+        <span>No Logo</span>
+        {% endif %}
+        <span style="font-size: {{ Home.font_size|default:'16' }}px; color: {{ Home.font_color|default:'#000000' }}">{{ Home.mahal_name | default:"MuthuKumaran Mahal" }}</span>
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
@@ -12,24 +16,21 @@
     </button>
 
     <div class="collapse navbar-collapse" id="mainNav">
-        <ul class="navbar-nav ms-auto gap-4">
+        <ul class="navbar-nav ms-auto">
             
-            <!-- In your navigation -->
             {% if user.is_authenticated %}
-                <li><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-                <a href="{% url 'dashboard' %}">Dashboard</a>
-                <a href="{% url 'logout' %}"
-                onclick="return confirm('Are You Sure Logout !')"
-                >Logout</a>
+                <li class="nav-item"><a class="nav-link" style="color: {{ Home.font_color|default:'#000000' }}" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" style="color: {{ Home.font_color|default:'#000000' }}" href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" style="color: {{ Home.font_color|default:'#000000' }}" href="{% url 'profile' %}">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" style="color: {{ Home.font_color|default:'#000000' }}" href="{% url 'logout' %}" onclick="return confirm('Are You Sure Logout !')">Logout</a></li>
             {% else %}
-                <a href="{% url 'login' %}">Login</a>
-                <a href="{% url 'register' %}">Register</a>
-                <li><a class="nav-link" href="{% url 'about' %}">About</a></li>
-                <!-- <li><a class="nav-link" href="{% url 'login' %}">Login</a></li> -->
-                <li><a class="nav-link" href="{% url 'special' %}">Specials</a></li>
-                <li><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" style="color: {{ Home.font_color|default:'#000000' }}" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" style="color: {{ Home.font_color|default:'#000000' }}" href="{% url 'about' %}">About</a></li>
+                <li class="nav-item"><a class="nav-link" style="color: {{ Home.font_color|default:'#000000' }}" href="{% url 'special' %}">Specials</a></li>
+                <li class="nav-item"><a class="nav-link" style="color: {{ Home.font_color|default:'#000000' }}" href="{% url 'contact' %}">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" style="color: {{ Home.font_color|default:'#000000' }}" href="{% url 'login' %}">Login</a></li>
+                <li class="nav-item"><a class="nav-link" style="color: {{ Home.font_color|default:'#000000' }}" href="{% url 'register' %}">Register</a></li>
             {% endif %}
-
 
         </ul>
     </div>
