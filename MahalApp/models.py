@@ -35,8 +35,7 @@ class User(AbstractUser):
         default='client'
     )
     address = models.CharField(max_length=255, blank=True)
-    is_active = models.BooleanField(default=True, verbose_name="Active")
-    
+    profile = models.FileField(upload_to="profile/", blank=True, null=True)
 
 
     objects = UserManager()

@@ -95,20 +95,38 @@ def dashboard_view(request):
 
 @login_required
 def profile_view(request):
-    user=request.user
+    user = request.user
 
     if request.method == "POST":
-        user.username=request.POST.get("username",user.username)
-        user.email=request.POST.get('email', user.email)
-        user.phone=request.POST.get("phone", user.phone)
-        user.address=request.POST.get("address", user.address)
-        old_password=request.POST.get("old_password","").strip()
-        new_password=request.POST.get("new_password","").strip()
-        confirm_password=request.POST.get("confirm_password", "").strip()
+        user.username = request.POST.get("username", user.username)
+        user.email = request.POST.get('email', user.email)
+        user.phone = request.POST.get("phone", user.phone)
+        user.address = request.POST.get("address", user.address)
+        
+        # Handle profile image upload with validation
+        if request.FILES.get("profile"):
+            uploaded_file = request.FILES.get("profile")
+            
+            # Validate file type
+            if not uploaded_file.content_type.startswith('image/'):
+                messages.error(request, 'Please upload a valid image file!')
+                return redirect('profile')
+            
+            # Validate file size (max 5MB)
+            if uploaded_file.size > 5 * 1024 * 1024:
+                messages.error(request, 'File size too large! Max 5MB allowed.')
+                return redirect('profile')
+            
+            user.profile = uploaded_file
+        
+        # Handle password change
+        old_password = request.POST.get("old_password", "").strip()
+        new_password = request.POST.get("new_password", "").strip()
+        confirm_password = request.POST.get("confirm_password", "").strip()
     
         if new_password or confirm_password:
             if not old_password:
-                messages.error(request,"Please Enter Your Old Password !")
+                messages.error(request, "Please Enter Your Old Password !")
                 return redirect('profile')
 
             if not user.check_password(old_password):
@@ -118,16 +136,16 @@ def profile_view(request):
             if new_password != confirm_password:
                 messages.error(request, "New Password and Confirm Password do not match !")
                 return redirect('profile')
+            
             user.set_password(new_password)
-            user.save()
-            messages.success(request,'Password Upddated Successfully !')
+        
+        # Save all changes once
         user.save()
         messages.success(request, 'Profile Updated Successfully !')
-    context={
-        'user':user 
-    }
-
-    return render(request,'profile.html',context)
+        return redirect('profile')
+    
+    context = {'user': user}
+    return render(request, 'profile.html', context)
 
 def special_view(request):
     return render(request,'special.html')
