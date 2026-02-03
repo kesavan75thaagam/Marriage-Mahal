@@ -19,13 +19,13 @@
         <ul class="navbar-nav ms-auto">
             
             {% if user.is_authenticated %}
-                <li class="nav-item"><a class="nav-link" style="color: {{ Home.font_color|default:'#000000' }}" href="{% url 'home' %}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" style="color: {{ Home.font_color|default:'#000000' }}" href="{% url 'dashboard' %}">Dashboard</a></li>
-                <li class="nav-item"><a class="nav-link" style="color: {{ Home.font_color|default:'#000000' }}" href="{% url 'profile' %}">Profile</a></li>
-                <li class="nav-item"><a class="nav-link" style="color: {{ Home.font_color|default:'#000000' }}" href="{% url 'logout' %}" onclick="return confirm('Are You Sure Logout !')">Logout</a></li>
+                <li class="nav-item"><a class="nav-link"  style="color: {{ Home.font_color|default:'#000000' }}" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}" onclick="return confirm('Are You Sure Logout !')">Logout</a></li>
             {% else %}
-                <li class="nav-item"><a class="nav-link" style="color: {{ Home.font_color|default:'#000000' }}" href="{% url 'home' %}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" style="color: {{ Home.font_color|default:'#000000' }}" href="{% url 'about' %}">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
                 <li class="nav-item"><a class="nav-link" style="color: {{ Home.font_color|default:'#000000' }}" href="{% url 'special' %}">Specials</a></li>
                 <li class="nav-item"><a class="nav-link" style="color: {{ Home.font_color|default:'#000000' }}" href="{% url 'contact' %}">Contact</a></li>
                 <li class="nav-item"><a class="nav-link" style="color: {{ Home.font_color|default:'#000000' }}" href="{% url 'login' %}">Login</a></li>

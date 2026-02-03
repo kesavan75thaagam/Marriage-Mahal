@@ -35,6 +35,9 @@ class User(AbstractUser):
         default='client'
     )
     address = models.CharField(max_length=255, blank=True)
+    is_active = models.BooleanField(default=True, verbose_name="Active")
+    
+
 
     objects = UserManager()
     
