@@ -24,7 +24,9 @@ def home_slider_view(request):
         font_color = request.POST.get("font_color", "#000000")
         font_size = request.POST.get("font_size", "16")
         logo_radius = request.POST.get("logo_radius", "40")
-        
+        whatsapp_no=request.POST.get("whatsapp_no")
+        phone=request.POST.get("phone")
+        gmail=request.POST.get("gmail")
         # Validate required fields
         if not mahal_name:
             messages.error(request, 'Mahal name is required!')
@@ -37,6 +39,10 @@ def home_slider_view(request):
         home.font_color = font_color
         home.font_size = font_size
         home.logo_radius = int(logo_radius) if logo_radius.isdigit() else 40
+        home.whatsapp_no = whatsapp_no
+        home.phone = phone
+        home.gmail = gmail
+
         print(home.font_color)
         # Handle file upload
         if request.FILES.get("logo"):

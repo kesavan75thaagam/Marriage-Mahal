@@ -54,6 +54,9 @@ class HomeSlider(models.Model):
     font_size=models.CharField(max_length=100, null=True, blank=True)
     logo=models.FileField(upload_to="logo/",null=True, blank=True)
     logo_radius=models.IntegerField(default=40)
+    whatsapp_no=models.CharField(max_length=100, null=True, blank=True)
+    phone=models.CharField(max_length=100, null=True, blank=True)
+    gmail=models.EmailField(max_length=100, unique=True)
 
     def __str__(self):
         return self.mahal_name

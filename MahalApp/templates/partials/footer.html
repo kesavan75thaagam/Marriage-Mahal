@@ -1,5 +1,5 @@
 {% load static %}
-<footer class="bg-dark text-white pt-5 pb-4">
+<footer class="text-white pt-5 pb-4" style="background-color: {{ Home.bg_color|default:'#333333' }}; color: {{ Home.font_color|default:'#ffffff' }};">
   <div class="container text-md-left">
     <div class="row">
 
@@ -12,9 +12,9 @@
 
       <div class="col-md-3 mb-4">
         <h5 class="fw-bold">Contact</h5>
-        <p><i class="fab fa-whatsapp me-2"></i> +91 9942922399</p>
-        <p><i class="fas fa-phone-alt me-2"></i> +91 9942922399</p>
-        <p><i class="fas fa-envelope me-2"></i> kesavanmk19@gmail.com</p>
+        <p><i class="fab fa-whatsapp me-2"></i>{{ Home.whatsapp_no|default:'N/A' }}</p>
+        <p><i class="fas fa-phone-alt me-2"></i>{{ Home.phone|default:'N/A' }}</p>
+        <p><i class="fas fa-envelope me-2"></i>{{ Home.gmail|default:'N/A' }}</p>
       </div>
 
       <div class="col-md-5 mb-4">

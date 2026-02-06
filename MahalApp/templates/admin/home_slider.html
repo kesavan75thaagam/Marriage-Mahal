@@ -43,15 +43,27 @@
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label for="font_size" class="form-label">Font Color</label>
-                                <input type="color" name="font_size" id="font_size" class="form-control" 
-                                       value="{{ home.font_color |default:'#ffffff' }}" min="10" max="100">
-                            </div>
-                            
-                            <div class="col-md-6 mb-3">
                                 <label for="logo_radius" class="form-label">Logo Radius (px)</label>
                                 <input type="number" name="logo_radius" id="logo_radius" class="form-control" 
                                        value="{{ home.logo_radius|default:'40' }}" min="0" max="100">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="whatsapp_no" class="form-label">WhatsApp Number</label>
+                                <input type="tel" name="whatsapp_no" id="whatsapp_no" class="form-control" 
+                                       value="{{ home.whatsapp_no }}" placeholder="9488723115">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="tel" name="phone" id="phone" class="form-control" 
+                                       value="{{ home.phone }}" placeholder="9342532503">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="gmail" class="form-label">Gmail</label>
+                                <input type="email" name="gmail" id="gmail" class="form-control" 
+                                       value="{{ home.gmail }}" placeholder="example@gmail.com">
                             </div>
                         </div>
                         
