@@ -24,6 +24,7 @@ urlpatterns=[
     ######    ADMIN URL   ##################
     path('Partials/',views.PartialsView, name='Partials'),
     path('home_slider/', views.home_slider_view, name='home_slider'),
+    path('home_banner/', views.home_banner_view, name='home_banner'),
 ]
 
 

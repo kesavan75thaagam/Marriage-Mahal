@@ -1,0 +1,25 @@
+
+<h1>Home Page Updations </h1>
+
+
+	<div class="card">
+		<div class="card-header">
+			<h3 class="mb-0"> Home Page Banner </h3>
+		</div>
+		<div class="card-body">
+			<form method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				<label>Main Images </label>
+				<input type="file" name="image">
+
+				<label> Sub Title </label>
+				<input type="text" name="subtitle">
+
+
+				<label> Title </label>
+				<input type="text" name="title">
+
+				<button type="submit"> Update </button>
+			</form>
+		</div>
+	</div>

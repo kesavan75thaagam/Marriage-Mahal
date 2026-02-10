@@ -6,112 +6,12 @@
 {% block content %}
 
 
-  <!-- Full-width Big Image -->
-<!-- Carousel -->
-<div id="homeCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1500">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="0" class="active"></button>
-    <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="1"></button>
-    <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="2"></button>
-    <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="3"></button>
-  </div>
 
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="{% static 'images/image0.png' %}" class="d-block w-100" style="height:75vh; object-fit:cover;">
-    </div>
-    <div class="carousel-item">
-      <img src="{% static 'images/image2.png' %}" class="d-block w-100" style="height:75vh; object-fit:cover;">
-    </div>
-    <div class="carousel-item">
-      <img src="{% static 'images/image3.png' %}" class="d-block w-100" style="height:75vh; object-fit:cover;">
-    </div>
-    <div class="carousel-item">
-      <img src="{% static 'images/image7.jpg' %}" class="d-block w-100" style="height:75vh; object-fit:cover;">
-    </div>
-  </div>
-</div>
-
-<!-- ✅ Custom CSS to control speed -->
-<style>
-  .carousel-item {
-    transition: transform 1.5s ease-in-out; /* slide takes 1.5 sec */
-  
-  }
-  .row g-4 text-center card-body{
-    transition: transform 1s ease-in-out;
-    cursor: pointer;
-  }
-  .row g-4 text-center card-body:hover{
-    transform: scale(1.1);
-  }
-  /* ============ Media Queries ============ */
-
-/* Extra small devices (phones, <576px) */
-@media (max-width: 575.98px) {
-  #mainNavbar {
-    padding-top: 0.3rem;
-    padding-bottom: 0.3rem;
-  }
-  #mainNavbar .navbar-brand span {
-    font-size: 14px;
-  }
-  #mainNavbar .logo-img {
-    height: 28px;
-  }
-}
-
-/* Small devices (≥576px and <768px) */
-@media (min-width: 576px) and (max-width: 767.98px) {
-  #mainNavbar .navbar-brand span {
-    font-size: 16px;
-  }
-  #mainNavbar .logo-img {
-    height: 32px;
-  }
-}
-
-/* Medium devices (≥768px and <992px) */
-@media (min-width: 768px) and (max-width: 991.98px) {
-  #mainNavbar .navbar-brand span {
-    font-size: 18px;
-  }
-  #mainNavbar .logo-img {
-    height: 35px;
-  }
-}
-
-/* Large devices (≥992px and <1200px) */
-@media (min-width: 992px) and (max-width: 1199.98px) {
-  #mainNavbar .navbar-brand span {
-    font-size: 20px;
-  }
-  #mainNavbar .logo-img {
-    height: 40px;
-  }
-}
-
-/* Extra large devices (≥1200px) */
-@media (min-width: 1200px) {
-  #mainNavbar .navbar-brand span {
-    font-size: 22px;
-  }
-  #mainNavbar .logo-img {
-    height: 45px;
-  }
-}
-
-</style>
-
-  <!-- Controls -->
-  <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </button>
-</div>
-
+{% for banner in home_banner %}
+    <img src="{{ banner.image.url }}" alt="home image" width="100px">
+    <h1>{{ banner.title }}</h1>
+{% endfor %}
+<h1>Hii </h1>
 <hr>
 <!-- Hall Description Paragraph with Decorative Line -->
 <section class="container text-center mt-4">

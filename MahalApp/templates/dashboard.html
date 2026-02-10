@@ -20,8 +20,8 @@
                             <a href="{% url 'home_slider' %}" class="btn btn-outline-primary btn-lg">
                                 <i class="fas fa-sliders-h me-2"></i>Home Slider
                             </a>
-                            <a href="#" class="btn btn-outline-primary btn-lg">
-                                <i class="fas fa-users me-2"></i>All Users
+                            <a href="{% url 'home_banner' %}" class="btn btn-outline-primary btn-lg">
+                                <i class="fas fa-users me-2"></i>Home Banner
                             </a>
                         </div>
                     {% elif user.role == 'client' %}

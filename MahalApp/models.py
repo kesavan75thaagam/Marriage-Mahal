@@ -60,3 +60,14 @@ class HomeSlider(models.Model):
 
     def __str__(self):
         return self.mahal_name
+
+
+class HomeBanner(models.Model):
+    image=models.ImageField(upload_to="home_banners/")
+    title=models.CharField(max_length=100, blank=True, null=True)
+    subtitle=models.CharField(max_length=100, blank=True, null=True)
+
+
+    def __str__(self):
+        return f"Banner {self.id}"
+

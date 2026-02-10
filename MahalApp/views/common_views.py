@@ -3,14 +3,20 @@ import requests
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from MahalApp.models import User
+from MahalApp.models import User, HomeBanner
 from django.contrib.auth.decorators import login_required
 
 
 def home_view(request):
     from MahalApp.models import HomeSlider
-    home_slider, created = HomeSlider.objects.get_or_create(id=1)
-    context = {'Home': home_slider}
+    home_banner=HomeBanner.objects.all()
+    for i in home_banner:
+        print(f"HomeImage:{i.image}")
+        print(f"HomeTitle:{i.title}")
+        print(f"HomeSubitle:{i.subtitle}")
+    context={
+        "home_banner":home_banner
+    }
     return render(request, 'home.html', context)
 
 def about_view(request):
